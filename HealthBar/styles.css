@@ -84,6 +84,7 @@ button {
 
 .boss-health-bar .health-bar-fill {
     background-color: yellow;
+    transition: width 0.5s ease;
 }
 
 .boss-health-bar .health-bar-overlay {
@@ -106,6 +107,7 @@ button {
 
 .player-health-bar .health-bar-fill {
     background-color: yellow;
+    transition: width 0.5s ease;
 }
 
 .player-health-bar .health-bar-overlay {
@@ -135,12 +137,4 @@ button {
 
 .controls button:hover {
     background-color: #0056b3;
-}
-
-.health-bar-fill {
-    position: absolute;
-    height: 100%;
-    top: 0;
-    left: 0;
-    transition: width 0.5s ease;
 }
