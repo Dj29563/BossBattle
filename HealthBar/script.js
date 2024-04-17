@@ -24,6 +24,60 @@ function restartGame() {
     initializeHealthBars();
 }
 
+function playerHealAnimation(n) {
+    var increment = 1;
+    var healedAmount = 0;
+    var intervalTime = 50;
+    var interval = setInterval(function() {
+        if (healedAmount >= n) {
+            clearInterval(interval);
+            return;
+        }
+
+        if (playerhealth + increment >= 100) {
+            playerhealth = 100;
+            updateplayerhealth();
+            clearInterval(interval);
+        } else {
+            playerhealth += increment;
+            updateplayerhealth();
+            healedAmount += increment;
+        }
+
+        if (playerhealth === 100) {
+            clearInterval(interval);
+        }
+    }, intervalTime);
+}
+
+function bossHealAnimation(n) {
+    var increment = 1;
+    var healedAmount = 0;
+    var intervalTime = 100;
+
+    var interval = setInterval(function() {
+        if (healedAmount >= n) {
+            clearInterval(interval);
+            return;
+        }
+
+        if (bosshealth + increment >= 100) {
+            bosshealth = 100;
+            updatebosshealth();
+            clearInterval(interval);
+        } else {
+            bosshealth += increment;
+            updatebosshealth();
+            healedAmount += increment;
+        }
+
+        if (bosshealth === 100) {
+            clearInterval(interval);
+        }
+    }, intervalTime);
+}
+
+
 function playeraddhealth(n) {
     if (playerhealth + n >= 100) {
         playerhealth = 100;
