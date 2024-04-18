@@ -1,5 +1,6 @@
 var playerhealth = 100;
 var bosshealth = 100;
+document.body.style.overflow = 'hidden';
 
 function initializeHealthBars() {
     updateplayerhealth();
@@ -90,13 +91,16 @@ function playeraddhealth(n) {
 function playerdelhealth(n) {
     playerhealth -= n;
     updateplayerhealth();
+    shakeElement(document.getElementById("player-health-bar"));
 }
 
 function bossdelhealth(n) {
     bosshealth -= n;
-
     updatebosshealth();
+    shakeElement(document.getElementById("boss-health-bar"));
 }
+
+
 
 function bossaddhealth(n) {
     if (bosshealth + n >= 100) {
@@ -137,4 +141,11 @@ function updateplayerhealth() {
     if (playerhealth <= 0) {
         playerlose();
     }
+}
+
+function shakeElement(element) {
+    element.classList.add('shake-screen');
+    setTimeout(function() {
+        element.classList.remove('shake-screen');
+    }, 200);
 }
