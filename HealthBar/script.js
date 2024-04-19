@@ -78,38 +78,30 @@ function bossHealAnimation(n) {
     }, intervalTime);
 }
 
-
-function playeraddhealth(n) {
-    if (playerhealth + n >= 100) {
-        playerhealth = 100;
-    } else {
-        playerhealth += n;
-    }
-    updateplayerhealth();
-}
-
 function playerdelhealth(n) {
+    if (playerhealth <= 0) {
+        return;
+    }
     playerhealth -= n;
+    if (playerhealth < 0) {
+        playerhealth = 0;
+    }
     updateplayerhealth();
     shakeElement(document.getElementById("player-health-bar"));
 }
 
 function bossdelhealth(n) {
+    if (bosshealth <= 0) {
+        return;
+    }
     bosshealth -= n;
+    if (bosshealth < 0) {
+        bosshealth = 0;
+    }
     updatebosshealth();
     shakeElement(document.getElementById("boss-health-bar"));
 }
 
-
-
-function bossaddhealth(n) {
-    if (bosshealth + n >= 100) {
-        bosshealth = 100;
-    } else {
-        bosshealth += n;
-    }
-    updatebosshealth();
-}
 
 function updatebosshealth() {
     var bossHealthBar = document.getElementById("boss-health-bar");
