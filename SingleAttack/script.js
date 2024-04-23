@@ -1,6 +1,7 @@
 var count = 3;
 var check = 0;
-var bool = 2;
+var bool = 0;
+var correct;
 
 function moveShield(state) {
     const shield = document.getElementById('shield');
@@ -49,6 +50,7 @@ function movedown() {
 }
 
 function moveArrowIntoHeart() {
+    checkshieldarrow();
     const gameContainer = document.getElementById('game-container');
     const containerWidth = gameContainer.offsetWidth;
     const containerHeight = gameContainer.offsetHeight;
@@ -84,8 +86,29 @@ function moveElement(element, targetX, targetY) {
         originalPositions[element.id] = { x: currentX, y: currentY };
     }
 
-    const dx = targetX - (currentX + element.offsetWidth / 2);
-    const dy = targetY - (currentY + element.offsetHeight / 2);
+    let finalTargetX = targetX;
+    let finalTargetY = targetY;
+
+    if (correct === 1) {
+        switch (bool) {
+            case 0:
+                finalTargetX = currentX + (targetX - currentX) * 0.5;
+                finalTargetY = currentY + (targetY - currentY) * 0.5;
+                break;
+            case 1:
+                finalTargetX = currentX + (targetX - currentX) * 0.5;
+                finalTargetY = currentY + (targetY - currentY) * 0.5 - element.offsetHeight / 2;
+                break;
+            case 2:
+                finalTargetX = currentX + (targetX - currentX) * 0.5 + element.offsetWidth / 2;
+                finalTargetY = currentY + (targetY - currentY) * 0.5;
+                break;
+        }
+    }
+
+
+    const dx = finalTargetX - (currentX + element.offsetWidth / 2);
+    const dy = finalTargetY - (currentY + element.offsetHeight / 2);
 
     element.style.transition = 'all 0.5s ease';
     element.style.transform = `translate(${dx}px, ${dy}px)`;
@@ -94,7 +117,6 @@ function moveElement(element, targetX, targetY) {
 
     setTimeout(() => {
         if (distanceToTarget > 5) {
-            // Check if the arrow should remain visible until hitting the heart
             if ((bool === 1 && element.id === 'top-arrow') ||
                 (bool === 0 && element.id === 'left-arrow') ||
                 (bool === 2 && element.id === 'right-arrow')) {
@@ -102,31 +124,34 @@ function moveElement(element, targetX, targetY) {
                 setTimeout(() => {
                     element.style.opacity = '0';
                     setTimeout(() => {
-                        moveElementBack(element);
+                        moveElementBack(element, finalTargetX, finalTargetY);
                     }, 300);
                 }, 500);
             } else {
                 element.style.opacity = '0';
                 setTimeout(() => {
-                    moveElementBack(element);
+                    moveElementBack(element, finalTargetX, finalTargetY);
                 }, 300);
             }
         } else {
-            // Arrow has hit the heart
-            element.style.display = 'block'; // Ensure arrow is visible when hit
-            if ((element.id !== 'top-arrow') ||
-                (element.id !== 'left-arrow') ||
-                (element.id !== 'right-arrow')) {
-                element.style.opacity = '0';
-                moveElementBack(element);
-            }
-            setTimeout(() => {
-                moveElementBack(element);
-            }, 300);
+            element.style.display = 'block';
+            element.style.opacity = '0';
+            moveElementBack(element, finalTargetX, finalTargetY);
         }
     }, timeToDisappear - 50);
 }
 
+function changebool() {
+    bool = (bool + 1) % 3;
+}
+
+function checkshieldarrow() {
+    if (count == bool) {
+        correct = 1;
+    } else {
+        correct = 0;
+    }
+}
 
 function moveElementBack(element) {
     const originalX = originalPositions[element.id].x;
