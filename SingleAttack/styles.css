@@ -1,0 +1,81 @@
+body,
+html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+}
+
+#game-container {
+    width: 95%;
+    height: 30%;
+    margin: 0 0 0 0;
+    position: fixed;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #feb603;
+    border: 5px solid #fe5001;
+    overflow: hidden;
+}
+
+#player-heart {
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    background-color: red;
+    border-radius: 50%;
+}
+
+#left-arrow {
+    top: 68%;
+    left: 20%;
+    position: absolute;
+    width: 10%;
+    height: 10%;
+    z-index: 1;
+}
+
+#right-arrow {
+    top: 68%;
+    right: 20%;
+    position: absolute;
+    width: 10%;
+    height: 10%;
+    z-index: 1;
+}
+
+#top-arrow {
+    top: 10%;
+    left: 48%;
+    position: absolute;
+    width: 5%;
+    height: 20%;
+    z-index: 1;
+}
+
+#shield {
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 5px;
+    height: 30px;
+    background-color: #472407;
+    border-radius: 10px;
+    z-index: 2;
+    transition: all 0.5s ease;
+}
+
+#shield.morphed {
+    width: 30px;
+    height: 5px;
+    border-radius: 10px;
+}
+
+.arrow {
+    display: none;
+}
