@@ -1,5 +1,6 @@
-var count = 0;
+var count = 3;
 var check = 0;
+var bool = 2;
 
 function moveShield(state) {
     const shield = document.getElementById('shield');
@@ -90,19 +91,42 @@ function moveElement(element, targetX, targetY) {
     element.style.transform = `translate(${dx}px, ${dy}px)`;
     const distanceToTarget = Math.sqrt(dx * dx + dy * dy);
     const timeToDisappear = 150;
+
     setTimeout(() => {
         if (distanceToTarget > 5) {
-            element.style.opacity = '0';
+            // Check if the arrow should remain visible until hitting the heart
+            if ((bool === 1 && element.id === 'top-arrow') ||
+                (bool === 0 && element.id === 'left-arrow') ||
+                (bool === 2 && element.id === 'right-arrow')) {
+                element.style.display = 'block';
+                setTimeout(() => {
+                    element.style.opacity = '0';
+                    setTimeout(() => {
+                        moveElementBack(element);
+                    }, 300);
+                }, 500);
+            } else {
+                element.style.opacity = '0';
+                setTimeout(() => {
+                    moveElementBack(element);
+                }, 300);
+            }
+        } else {
+            // Arrow has hit the heart
+            element.style.display = 'block'; // Ensure arrow is visible when hit
+            if ((element.id !== 'top-arrow') ||
+                (element.id !== 'left-arrow') ||
+                (element.id !== 'right-arrow')) {
+                element.style.opacity = '0';
+                moveElementBack(element);
+            }
             setTimeout(() => {
                 moveElementBack(element);
-            }, 500);
-        } else {
-            if (arrowsVisible) {
-                element.style.display = 'block';
-            }
+            }, 300);
         }
     }, timeToDisappear - 50);
 }
+
 
 function moveElementBack(element) {
     const originalX = originalPositions[element.id].x;
