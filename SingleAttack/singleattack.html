@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Single Attack</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div id="game-container">
+        <div id="player-heart"></div>
+        <div id="shield"></div>
+        <img class="arrow" id="left-arrow" src="https://cdn.discordapp.com/attachments/1226592436784992298/1231875012055666718/Asset_2.png?ex=66388c02&is=66261702&hm=b9567415a084795dc9e53310581b056d8c9078bbf092e899cffecf08b5300043&" alt="Left arrow">
+        <img class="arrow" id="top-arrow" src="https://cdn.discordapp.com/attachments/1226592436784992298/1231882691436216370/Asset_6.png?ex=66276fa8&is=66261e28&hm=c42d315221ec03f68f0369b5213d38a9cc6738abcb0043cc118a82352676967d&" alt="Top arrow">
+        <img class="arrow" id="right-arrow" src="https://cdn.discordapp.com/attachments/1226592436784992298/1231882691935469628/Asset_5.png?ex=66389329&is=66261e29&hm=45ba1dbdabc0fb9b8fe38f67bab71553ee15199279cafe0b235a8f7ffc912b92&" alt="Right arrow">
+    </div>
+    <div>
+        <button onclick="movedown()">move shield left</button>
+        <button onclick="moveup()">move shield right</button>
+        <button onclick="moveArrowIntoHeart()">attack</button>
+        <button onclick="showarrow()">show</button>
+    </div>
+
+
+    <script src="script.js"></script>
+</body>
+
+</html>
