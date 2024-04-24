@@ -89,7 +89,7 @@ html {
     width: 90%;
     height: 30%;
     position: fixed;
-    top: 60%;
+    top: 65%;
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: #feb603;
@@ -133,4 +133,26 @@ html {
     top: 90%;
     right: 25%;
     display: none;
+}
+
+#question-box {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 85%;
+    height: 5%;
+    padding: 20px;
+    background-color: rgba(194, 194, 194, 0.5);
+    border: 5px solid #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 2;
+    display: none;
+}
+
+#question-text {
+    font-size: 18px;
+    text-align: center;
+    color: #000000;
 }
