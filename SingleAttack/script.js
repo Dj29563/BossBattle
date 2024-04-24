@@ -194,3 +194,73 @@ function displayAddedText() {
     displayArea2.textContent = textboxValues[1];
     displayArea3.textContent = textboxValues[2];
 }
+
+function toggleGameContainer() {
+    const gameContainer = document.getElementById('game-container');
+    const isVisible = gameContainer.classList.contains('visible');
+
+    if (isVisible) {
+        let opacity = 1;
+        let height = 30;
+        const interval = 10;
+        const steps = 30;
+
+        const decreaseHeight = () => {
+            height -= 30 / steps;
+            if (height <= 0) {
+                height = 0;
+                clearInterval(timer);
+                gameContainer.style.display = 'none';
+                gameContainer.classList.remove('visible');
+                gameContainer.classList.add('invisible');
+            }
+            gameContainer.style.height = height + '%';
+        };
+
+        const fadeOut = () => {
+            opacity -= 1 / steps;
+            if (opacity <= 0) {
+                opacity = 0;
+                clearInterval(timer);
+            }
+            gameContainer.style.opacity = opacity;
+        };
+
+        const timer = setInterval(() => {
+            decreaseHeight();
+            fadeOut();
+        }, interval);
+    } else {
+        let opacity = 0;
+        let height = 0;
+        const interval = 10;
+        const steps = 30;
+
+        gameContainer.style.display = 'block';
+
+        const increaseHeight = () => {
+            height += 30 / steps;
+            if (height >= 30) {
+                height = 30;
+                clearInterval(timer);
+                gameContainer.classList.remove('invisible');
+                gameContainer.classList.add('visible');
+            }
+            gameContainer.style.height = height + '%';
+        };
+
+        const fadeIn = () => {
+            opacity += 1 / steps;
+            if (opacity >= 1) {
+                opacity = 1;
+                clearInterval(timer);
+            }
+            gameContainer.style.opacity = opacity;
+        };
+
+        const timer = setInterval(() => {
+            increaseHeight();
+            fadeIn();
+        }, interval);
+    }
+}
