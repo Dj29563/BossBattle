@@ -98,3 +98,37 @@ html {
     transition: width 0.5s ease-in-out;
     opacity: 0;
 }
+
+#moveleft {
+    background-color: #472407;
+    border-color: #cd6b02;
+    color: #feb603;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 8px;
+    position: absolute;
+    top: 85%;
+    left: 25%;
+}
+
+#moveright {
+    background-color: #472407;
+    border-color: #cd6b02;
+    color: #feb603;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 8px;
+    position: absolute;
+    top: 85%;
+    right: 25%;
+}
