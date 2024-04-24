@@ -1,6 +1,5 @@
 var count = 3;
 var check = 0;
-var bool = 0;
 var correct;
 
 function moveShield(state) {
@@ -199,6 +198,7 @@ function toggleGameContainer() {
     const gameContainer = document.getElementById('game-container');
     const moveLeftButton = document.getElementById('moveleft');
     const moveRightButton = document.getElementById('moveright');
+    const questionBox = document.getElementById('question-box');
 
     const isVisible = gameContainer.classList.contains('visible');
 
@@ -218,6 +218,7 @@ function toggleGameContainer() {
                 gameContainer.classList.add('invisible');
                 moveLeftButton.style.display = 'none';
                 moveRightButton.style.display = 'none';
+                questionBox.style.display = 'none'; 
             }
             gameContainer.style.height = height + '%';
         };
@@ -242,6 +243,7 @@ function toggleGameContainer() {
         const steps = 30;
 
         gameContainer.style.display = 'block';
+        questionBox.style.display = 'block'; 
 
         const increaseHeight = () => {
             height += 30 / steps;
@@ -272,6 +274,7 @@ function toggleGameContainer() {
     }
 }
 
+
 function playSoundForDuration() {
     var sound = document.getElementById("sound");
     sound.play();
@@ -280,3 +283,12 @@ function playSoundForDuration() {
         sound.currentTime = 0;
     }, 1000);
 }
+
+function displayQuestion(question) {
+    const questionTextElement = document.getElementById('question-text');
+    questionTextElement.textContent = question;
+}
+
+const sampleQuestion = "Question";
+var bool = 0;
+//displayQuestion(sampleQuestion);
