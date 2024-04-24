@@ -7,7 +7,7 @@ html {
 }
 
 #game-container {
-    width: 95%;
+    width: 90%;
     height: 30%;
     margin: 0 0 0 0;
     position: fixed;
@@ -78,4 +78,22 @@ html {
 
 .arrow {
     display: none;
+}
+
+#display-area1 {
+    position: absolute;
+    top: 60%;
+    left: 15%;
+}
+
+#display-area2 {
+    position: absolute;
+    top: 8%;
+    left: 45%;
+}
+
+#display-area3 {
+    position: absolute;
+    top: 60%;
+    right: 15%;
 }
