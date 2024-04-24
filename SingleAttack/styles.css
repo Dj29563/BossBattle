@@ -6,19 +6,6 @@ html {
     overflow: hidden;
 }
 
-#game-container {
-    width: 90%;
-    height: 30%;
-    margin: 0 0 0 0;
-    position: fixed;
-    top: 60%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #feb603;
-    border: 5px solid #fe5001;
-    overflow: hidden;
-}
-
 #player-heart {
     position: absolute;
     top: 70%;
@@ -96,4 +83,18 @@ html {
     position: absolute;
     top: 60%;
     right: 15%;
+}
+
+#game-container {
+    width: 90%;
+    height: 30%;
+    position: fixed;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #feb603;
+    border: 5px solid #fe5001;
+    overflow: hidden;
+    transition: width 0.5s ease-in-out;
+    opacity: 0;
 }
