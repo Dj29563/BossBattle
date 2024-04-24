@@ -51,6 +51,7 @@ function movedown() {
 
 function moveArrowIntoHeart() {
     checkshieldarrow();
+    removetext();
     const gameContainer = document.getElementById('game-container');
     const containerWidth = gameContainer.offsetWidth;
     const containerHeight = gameContainer.offsetHeight;
@@ -62,6 +63,7 @@ function moveArrowIntoHeart() {
 }
 
 function showarrow() {
+    displayAddedText();
     arrowsVisible = true;
     document.querySelectorAll('.arrow').forEach(arrow => {
         arrow.style.display = 'block';
@@ -126,7 +128,7 @@ function moveElement(element, targetX, targetY) {
                     setTimeout(() => {
                         moveElementBack(element, finalTargetX, finalTargetY);
                     }, 300);
-                }, 500);
+                }, 800);
             } else {
                 element.style.opacity = '0';
                 setTimeout(() => {
@@ -166,4 +168,29 @@ function moveElementBack(element) {
     element.style.transition = 'all 0.5s ease';
     element.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
     element.style.opacity = '0';
+}
+
+var textboxValues;
+
+function removetext() {
+    textboxValues = ['', '', ''];
+
+    document.getElementById('display-area1').innerHTML = '';
+    document.getElementById('display-area2').innerHTML = '';
+    document.getElementById('display-area3').innerHTML = '';
+}
+
+function displayAddedText() {
+    const displayArea1 = document.getElementById('display-area1');
+    const displayArea2 = document.getElementById('display-area2');
+    const displayArea3 = document.getElementById('display-area3');
+
+    textboxValues = ['answer1', 'answer2', 'answer3'];
+    displayArea1.innerHTML = '';
+    displayArea2.innerHTML = '';
+    displayArea3.innerHTML = '';
+
+    displayArea1.textContent = textboxValues[0];
+    displayArea2.textContent = textboxValues[1];
+    displayArea3.textContent = textboxValues[2];
 }
