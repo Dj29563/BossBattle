@@ -197,6 +197,9 @@ function displayAddedText() {
 
 function toggleGameContainer() {
     const gameContainer = document.getElementById('game-container');
+    const moveLeftButton = document.getElementById('moveleft');
+    const moveRightButton = document.getElementById('moveright');
+
     const isVisible = gameContainer.classList.contains('visible');
 
     if (isVisible) {
@@ -213,6 +216,9 @@ function toggleGameContainer() {
                 gameContainer.style.display = 'none';
                 gameContainer.classList.remove('visible');
                 gameContainer.classList.add('invisible');
+                // Hide the buttons when the game container is hidden
+                moveLeftButton.style.display = 'none';
+                moveRightButton.style.display = 'none';
             }
             gameContainer.style.height = height + '%';
         };
@@ -245,6 +251,9 @@ function toggleGameContainer() {
                 clearInterval(timer);
                 gameContainer.classList.remove('invisible');
                 gameContainer.classList.add('visible');
+                // Show the buttons when the game container is visible
+                moveLeftButton.style.display = 'block';
+                moveRightButton.style.display = 'block';
             }
             gameContainer.style.height = height + '%';
         };
@@ -263,4 +272,13 @@ function toggleGameContainer() {
             fadeIn();
         }, interval);
     }
+}
+
+function playSoundForDuration() {
+    var sound = document.getElementById("sound");
+    sound.play();
+    setTimeout(function() {
+        sound.pause();
+        sound.currentTime = 0;
+    }, 1000);
 }
