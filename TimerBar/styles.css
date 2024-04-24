@@ -1,6 +1,9 @@
 .timer-bar-container {
     width: 200px;
     background-color: #f0f0f0;
+    position: absolute;
+    top: 84%;
+    left: calc(50% - 100px);
 }
 
 .timer-bar {
