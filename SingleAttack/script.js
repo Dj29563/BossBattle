@@ -216,7 +216,6 @@ function toggleGameContainer() {
                 gameContainer.style.display = 'none';
                 gameContainer.classList.remove('visible');
                 gameContainer.classList.add('invisible');
-                // Hide the buttons when the game container is hidden
                 moveLeftButton.style.display = 'none';
                 moveRightButton.style.display = 'none';
             }
@@ -251,7 +250,6 @@ function toggleGameContainer() {
                 clearInterval(timer);
                 gameContainer.classList.remove('invisible');
                 gameContainer.classList.add('visible');
-                // Show the buttons when the game container is visible
                 moveLeftButton.style.display = 'block';
                 moveRightButton.style.display = 'block';
             }
