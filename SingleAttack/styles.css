@@ -93,7 +93,7 @@ html {
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: #feb603;
-    border: 5px solid #fe5001;
+    border: 5px solid #472407;
     overflow: hidden;
     transition: width 0.5s ease-in-out;
     opacity: 0;
@@ -114,6 +114,7 @@ html {
     position: absolute;
     top: 90%;
     left: 25%;
+    display: none;
 }
 
 #moveright {
@@ -131,4 +132,5 @@ html {
     position: absolute;
     top: 90%;
     right: 25%;
+    display: none;
 }
