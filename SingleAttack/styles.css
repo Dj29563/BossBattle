@@ -112,7 +112,7 @@ html {
     cursor: pointer;
     border-radius: 8px;
     position: absolute;
-    top: 85%;
+    top: 90%;
     left: 25%;
 }
 
@@ -129,6 +129,6 @@ html {
     cursor: pointer;
     border-radius: 8px;
     position: absolute;
-    top: 85%;
+    top: 90%;
     right: 25%;
 }
