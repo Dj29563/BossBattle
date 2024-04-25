@@ -207,7 +207,9 @@ function toggleGameContainer() {
         let height = 30;
         const interval = 10;
         const steps = 30;
-
+        moveLeftButton.style.display = 'none';
+        moveRightButton.style.display = 'none';
+        questionBox.style.display = 'none';
         const decreaseHeight = () => {
             height -= 30 / steps;
             if (height <= 0) {
@@ -216,9 +218,7 @@ function toggleGameContainer() {
                 gameContainer.style.display = 'none';
                 gameContainer.classList.remove('visible');
                 gameContainer.classList.add('invisible');
-                moveLeftButton.style.display = 'none';
-                moveRightButton.style.display = 'none';
-                questionBox.style.display = 'none'; 
+
             }
             gameContainer.style.height = height + '%';
         };
@@ -243,7 +243,6 @@ function toggleGameContainer() {
         const steps = 30;
 
         gameContainer.style.display = 'block';
-        questionBox.style.display = 'block'; 
 
         const increaseHeight = () => {
             height += 30 / steps;
@@ -254,6 +253,7 @@ function toggleGameContainer() {
                 gameContainer.classList.add('visible');
                 moveLeftButton.style.display = 'block';
                 moveRightButton.style.display = 'block';
+                questionBox.style.display = 'block';
             }
             gameContainer.style.height = height + '%';
         };
@@ -274,7 +274,6 @@ function toggleGameContainer() {
     }
 }
 
-
 function playSoundForDuration() {
     var sound = document.getElementById("sound");
     sound.play();
@@ -287,6 +286,88 @@ function playSoundForDuration() {
 function displayQuestion(question) {
     const questionTextElement = document.getElementById('question-text');
     questionTextElement.textContent = question;
+}
+
+function toggleattackContainer() {
+    const gameContainer = document.getElementById('play-attack');
+    const isVisible = gameContainer.classList.contains('visible');
+
+    if (isVisible) {
+        let opacity = 1;
+        let height = 30;
+        const interval = 10;
+        const steps = 30;
+
+        const decreaseHeight = () => {
+            height -= 30 / steps;
+            if (height <= 0) {
+                height = 0;
+                clearInterval(timer);
+                gameContainer.style.display = 'none';
+                gameContainer.classList.remove('visible');
+                gameContainer.classList.add('invisible');
+            }
+            gameContainer.style.height = height + '%';
+        };
+
+        const fadeOut = () => {
+            opacity -= 1 / steps;
+            if (opacity <= 0) {
+                opacity = 0;
+                clearInterval(timer);
+            }
+            gameContainer.style.opacity = opacity;
+        };
+
+        const timer = setInterval(() => {
+            decreaseHeight();
+            fadeOut();
+        }, interval);
+    } else {
+        let opacity = 0;
+        let height = 0;
+        const interval = 10;
+        const steps = 30;
+
+        gameContainer.style.display = 'block';
+
+        const increaseHeight = () => {
+            height += 30 / steps;
+            if (height >= 30) {
+                height = 30;
+                clearInterval(timer);
+                gameContainer.classList.remove('invisible');
+                gameContainer.classList.add('visible');
+            }
+            gameContainer.style.height = height + '%';
+        };
+
+        const fadeIn = () => {
+            opacity += 1 / steps;
+            if (opacity >= 1) {
+                opacity = 1;
+                clearInterval(timer);
+            }
+            gameContainer.style.opacity = opacity;
+        };
+
+        const timer = setInterval(() => {
+            increaseHeight();
+            fadeIn();
+        }, interval);
+    }
+}
+
+function playerattack() {
+    var myButton = document.getElementById('playerattack');
+    toggleattackContainer();
+
+}
+
+function playerheal() {
+    var myButton = document.getElementById('playerheal');
+    toggleattackContainer();
+
 }
 
 const sampleQuestion = "Question";
