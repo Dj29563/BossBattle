@@ -370,6 +370,20 @@ function playerheal() {
 
 }
 
+function startheal() {
+    var healElement = document.getElementById("heal");
+    healElement.innerHTML = "";
+    for (let i = 0; i < 50; i++) {
+        var dot = document.createElement("div");
+        dot.classList.add("dot");
+        dot.style.left = Math.random() * 150 + "px";
+        dot.style.top = Math.random() * 150 + "px";
+        var duration = Math.random() * 2 + 0.5;
+        dot.style.animation = "moveDot " + duration + "s linear forwards";
+        healElement.appendChild(dot);
+    }
+}
+
 const sampleQuestion = "Question";
 var bool = 0;
 //displayQuestion(sampleQuestion);
