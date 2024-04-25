@@ -204,3 +204,34 @@ html {
     top: 45%;
     right: 25%;
 }
+
+#animation {
+    width: 150px;
+    height: 150px;
+    left: calc(50% - 75px);
+    top: 20%;
+    position: absolute;
+    z-index: 5;
+}
+
+#heal {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.dot {
+    width: 5px;
+    height: 5px;
+    background-color: rgb(0, 255, 0);
+    border-radius: 50%;
+    position: absolute;
+    animation: moveDot 3s linear forwards;
+}
+
+@keyframes moveDot {
+    to {
+        transform: translateY(-250px);
+        opacity: 0;
+    }
+}
