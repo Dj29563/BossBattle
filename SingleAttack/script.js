@@ -401,7 +401,7 @@ function startslash() {
     });
 }
 
-var bool = 0;
+var bool;
 var Question = ' ';
 var textboxValues;
 var data = [
@@ -470,10 +470,24 @@ var data = [
 
 function extractQuestionAndAnswers(x, y) {
     var a = data[x][y][0];
-    var b = data[x][y][1];
-    var c = data[x][y][2];
-    var d = data[x][y][3];
+    var num = Math.floor(Math.random() * 3);
 
+    switch (num) {
+        case 0:
+            var b = data[x][y][1];
+            var c = data[x][y][2];
+            var d = data[x][y][3];
+        case 1:
+            var c = data[x][y][1];
+            var b = data[x][y][2];
+            var d = data[x][y][3];
+        case 2:
+            var d = data[x][y][1];
+            var b = data[x][y][2];
+            var c = data[x][y][3];
+    }
+
+    bool = num;
     Question = a;
     textboxValues = [b, c, d];
 }
