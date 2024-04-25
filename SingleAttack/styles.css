@@ -156,3 +156,51 @@ html {
     text-align: center;
     color: #000000;
 }
+
+#play-attack {
+    width: 90%;
+    height: 30%;
+    position: fixed;
+    top: 65%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #feb603;
+    border: 5px solid #472407;
+    overflow: hidden;
+    transition: width 0.5s ease-in-out;
+    opacity: 0;
+}
+
+#playerattack {
+    background-color: #ff0000;
+    border-color: #920000;
+    color: #ff9f9f;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 8px;
+    position: absolute;
+    top: 45%;
+    left: 25%;
+}
+
+#playerheal {
+    background-color: #00ff08;
+    border-color: #00c54c;
+    color: #015800;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 8px;
+    position: absolute;
+    top: 45%;
+    right: 25%;
+}
