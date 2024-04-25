@@ -51,6 +51,7 @@ function movedown() {
 function moveArrowIntoHeart() {
     checkshieldarrow();
     removetext();
+    removeQuestion();
     const gameContainer = document.getElementById('game-container');
     const containerWidth = gameContainer.offsetWidth;
     const containerHeight = gameContainer.offsetHeight;
@@ -63,6 +64,7 @@ function moveArrowIntoHeart() {
 
 function showarrow() {
     displayAddedText();
+    displayQuestion();
     arrowsVisible = true;
     document.querySelectorAll('.arrow').forEach(arrow => {
         arrow.style.display = 'block';
@@ -283,9 +285,14 @@ function playSoundForDuration() {
     }, 1000);
 }
 
-function displayQuestion(question) {
+function displayQuestion() {
     const questionTextElement = document.getElementById('question-text');
-    questionTextElement.textContent = question;
+    questionTextElement.textContent = Question;
+}
+
+function removeQuestion() {
+    const questionTextElement = document.getElementById('question-text');
+    questionTextElement.textContent = ' ';
 }
 
 function toggleattackContainer() {
@@ -384,6 +391,5 @@ function startheal() {
     }
 }
 
-const sampleQuestion = "Question";
+const Question = "Question";
 var bool = 0;
-//displayQuestion(sampleQuestion);
