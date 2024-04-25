@@ -25,6 +25,12 @@
         <div id="display-area3"></div>
         <audio id="sound" src="sound.mp4"></audio>
     </div>
+
+    <div id="play-attack">
+        <button id="playerattack" onclick="playerattack()"> attack </button>
+        <button id="playerheal" onclick="playerheal()"> heal </button>
+    </div>
+    
     <div>
         <button id="moveleft" onclick="movedown()"> <- </button>
         <button id="moveright" onclick="moveup()"> -> </button>
@@ -32,6 +38,7 @@
         <button onclick="showarrow()">show</button>
         <button onclick="changebool()">change bool</button>
         <button onclick="toggleGameContainer()">Toggle Game Container</button>
+        <button onclick="toggleattackContainer()">Toggle attack Container</button>
     </div>
     <script src="script.js"></script>
 </body>
