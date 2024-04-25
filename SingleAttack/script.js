@@ -368,7 +368,7 @@ function toggleattackContainer() {
 function playerattack() {
     var myButton = document.getElementById('playerattack');
     toggleattackContainer();
-
+    startslash();
 }
 
 function playerheal() {
@@ -389,6 +389,19 @@ function startheal() {
         dot.style.animation = "moveDot " + duration + "s linear forwards";
         healElement.appendChild(dot);
     }
+}
+
+function startslash() {
+    const slash = document.querySelector('#slash');
+    slash.style.animation = 'none';
+    void slash.offsetWidth;
+    slash.style.animation = null;
+    slash.style.display = 'block';
+    slash.addEventListener('animationend', function() {
+        setTimeout(function() {
+            slash.style.display = 'none';
+        }, 500);
+    });
 }
 
 const Question = "Question";
