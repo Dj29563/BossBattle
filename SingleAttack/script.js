@@ -128,7 +128,7 @@ function moveElement(element, targetX, targetY) {
                     element.style.opacity = '0';
                     setTimeout(() => {
                         moveElementBack(element, finalTargetX, finalTargetY);
-                    }, 300);
+                    }, 250);
                 }, 800);
             } else {
                 element.style.opacity = '0';
@@ -504,4 +504,78 @@ function randomthree() {
     extractQuestionAndAnswers(a, b);
     displayAddedText();
     displayQuestion();
+}
+
+function toggleGameContainer2() {
+    const gameContainer = document.getElementById('game-container-two');
+    const questionBox = document.getElementById('question-box');
+
+    const isVisible = gameContainer.classList.contains('visible');
+
+    if (isVisible) {
+        let opacity = 1;
+        let height = 30;
+        const interval = 10;
+        const steps = 30;
+        questionBox.style.display = 'none';
+        const decreaseHeight = () => {
+            height -= 30 / steps;
+            if (height <= 0) {
+                height = 0;
+                clearInterval(timer);
+                gameContainer.style.display = 'none';
+                gameContainer.classList.remove('visible');
+                gameContainer.classList.add('invisible');
+
+            }
+            gameContainer.style.height = height + '%';
+        };
+
+        const fadeOut = () => {
+            opacity -= 1 / steps;
+            if (opacity <= 0) {
+                opacity = 0;
+                clearInterval(timer);
+            }
+            gameContainer.style.opacity = opacity;
+        };
+
+        const timer = setInterval(() => {
+            decreaseHeight();
+            fadeOut();
+        }, interval);
+    } else {
+        let opacity = 0;
+        let height = 0;
+        const interval = 10;
+        const steps = 30;
+
+        gameContainer.style.display = 'block';
+
+        const increaseHeight = () => {
+            height += 30 / steps;
+            if (height >= 30) {
+                height = 30;
+                clearInterval(timer);
+                gameContainer.classList.remove('invisible');
+                gameContainer.classList.add('visible');
+                questionBox.style.display = 'block';
+            }
+            gameContainer.style.height = height + '%';
+        };
+
+        const fadeIn = () => {
+            opacity += 1 / steps;
+            if (opacity >= 1) {
+                opacity = 1;
+                clearInterval(timer);
+            }
+            gameContainer.style.opacity = opacity;
+        };
+
+        const timer = setInterval(() => {
+            increaseHeight();
+            fadeIn();
+        }, interval);
+    }
 }
