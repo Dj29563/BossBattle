@@ -258,3 +258,52 @@ html {
         transform: translateX(-50%) scaleY(1.2);
     }
 }
+
+#game-container-two {
+    width: 90%;
+    height: 30%;
+    position: fixed;
+    top: 65%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 5px solid #472407;
+    overflow: hidden;
+    transition: width 0.5s ease-in-out;
+    opacity: 0;
+}
+
+#true {
+    width: 50%;
+    height: 100%;
+    position: fixed;
+    left: 0%;
+    background-color: #00ff08;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#true p {
+    font-size: 48px;
+    color: #a3ffa3;
+    font-weight: bold;
+}
+
+#false {
+    width: 50%;
+    height: 100%;
+    position: fixed;
+    right: 0%;
+    background-color: #ff0000;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#false p {
+    font-size: 48px;
+    color: #ffa7a7;
+    font-weight: bold;
+}
