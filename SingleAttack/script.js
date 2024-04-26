@@ -144,10 +144,6 @@ function moveElement(element, targetX, targetY) {
     }, timeToDisappear - 50);
 }
 
-function changebool() {
-    bool = (bool + 1) % 3;
-}
-
 function checkshieldarrow() {
     if (count == bool) {
         correct = 1;
@@ -188,9 +184,9 @@ function displayAddedText() {
     displayArea2.innerHTML = '';
     displayArea3.innerHTML = '';
 
-    displayArea1.textContent = textboxValues[0];
-    displayArea2.textContent = textboxValues[1];
-    displayArea3.textContent = textboxValues[2];
+    displayArea1.textContent = textboxValues1;
+    displayArea2.textContent = textboxValues2;
+    displayArea3.textContent = textboxValues3;
 }
 
 function toggleGameContainer() {
@@ -403,7 +399,10 @@ function startslash() {
 
 var bool;
 var Question = ' ';
-var textboxValues;
+var textboxValues1;
+var textboxValues2;
+var textboxValues3;
+
 var data = [
     [
         ["สเกลรองของเวอร์เนียร์คาลิปเปอร์อันหนึ่งมีจำนวน 20 ช่อง แต่ละช่องของสเกลรองจะมีค่ากี่มิลลิเมตร", "0.05 มิลลิเมตร", "0.04 มิลลิเมตร", "0.02 มิลลิเมตร"],
@@ -471,25 +470,28 @@ var data = [
 function extractQuestionAndAnswers(x, y) {
     var a = data[x][y][0];
     var num = Math.floor(Math.random() * 3);
-
-    switch (num) {
-        case 0:
-            var b = data[x][y][1];
-            var c = data[x][y][2];
-            var d = data[x][y][3];
-        case 1:
-            var c = data[x][y][1];
-            var b = data[x][y][2];
-            var d = data[x][y][3];
-        case 2:
-            var d = data[x][y][1];
-            var b = data[x][y][2];
-            var c = data[x][y][3];
+    var b = data[x][y][1];
+    var c = data[x][y][2];
+    var d = data[x][y][3];
+    if (num == 0) {
+        bool = 0;
+        textboxValues1 = b;
+        textboxValues2 = c;
+        textboxValues3 = d;
+    } else {
+        if (num == 1) {
+            bool = 1;
+            textboxValues1 = c;
+            textboxValues2 = b;
+            textboxValues3 = d;
+        } else {
+            bool = 2;
+            textboxValues1 = d;
+            textboxValues2 = c;
+            textboxValues3 = b;
+        }
     }
-
-    bool = num;
     Question = a;
-    textboxValues = [b, c, d];
 }
 
 function randomtwo() {
