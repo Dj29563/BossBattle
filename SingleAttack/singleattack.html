@@ -26,6 +26,7 @@
         <div id="false">
             <p> FALSE </p>
         </div>
+        <div id="player-heart-true"></div>
     </div>
 
     <div id="game-container">
@@ -49,8 +50,12 @@
     <div>
         <button id="moveleft" onclick="movedown()"> <- </button>
         <button id="moveright" onclick="moveup()"> -> </button>
+        <button id="movetrue" onclick="movetrue()"> true </button>
+        <button id="movefalse" onclick="movefalse()"> false </button>
         <button onclick="moveArrowIntoHeart()">attack</button>
+        <button onclick="moveLeavesInToHeart()">attack true</button>
         <button onclick="showarrow()">show</button>
+        <button onclick="showtruefalse()">show true</button>
         <button onclick="toggleGameContainer()">Toggle Game Container</button>
         <button onclick="toggleGameContainer2()">Toggle Game Container 2</button>
         <button onclick="toggleattackContainer()">Toggle attack Container</button>
