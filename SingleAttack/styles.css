@@ -326,7 +326,7 @@ html {
 #movetrue {
     background-color: #00ff00;
     border-color: #028d00;
-    color: #5cff64;
+    color: #000000;
     padding: 10px 20px;
     text-align: center;
     text-decoration: none;
@@ -344,7 +344,7 @@ html {
 #movefalse {
     background-color: #ff0000;
     border-color: #8d0000;
-    color: #ff5c5c;
+    color: #000000;
     padding: 10px 20px;
     text-align: center;
     text-decoration: none;
@@ -357,4 +357,38 @@ html {
     top: 90%;
     right: 25%;
     display: none;
+}
+
+#leavetrue {
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 5;
+}
+
+#leavefalse {
+    position: absolute;
+    top: 0%;
+    right: 0%;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 5;
+}
+
+.img {
+    position: flex;
+    z-index: 6;
+}
+
+@keyframes moveleave {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(100vh);
+    }
 }
