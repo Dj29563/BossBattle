@@ -152,6 +152,7 @@ function checkshieldarrow() {
         correct = 1;
     } else {
         correct = 0;
+
     }
 }
 
@@ -160,6 +161,7 @@ function checktruefalse() {
         correct2 = 1;
     } else {
         correct2 = 0;
+
     }
 }
 
@@ -656,9 +658,13 @@ function showtruefalse() {
 
 function moveLeavesInToHeart() {
     checktruefalse();
-    removetext();
     removeQuestion();
 
+    if (bool2 == 0) {
+        startattackfalse();
+    } else {
+        startattacktrue();
+    }
 }
 
 function randomtwo() {
@@ -840,7 +846,7 @@ function toggleGameContainer() {
 function moveHeart(state) {
     const heart = document.getElementById('player-heart-true');
     const positions = [
-        { top: '50%', left: '25%' },
+        { top: '50%', left: '20%' },
         { top: '50%', left: '65%' }
     ];
 
@@ -860,4 +866,32 @@ function movetrue() {
 function movefalse() {
     count2 = 1;
     moveHeart(count2);
+}
+
+function startattacktrue() {
+    var healElement = document.getElementById("leavetrue");
+    healElement.innerHTML = "";
+    for (let i = 0; i < 100; i++) {
+        var img = document.createElement("img");
+        img.src = "greenleave2.png";
+        img.style.left = Math.random() * 150 + "px";
+        img.style.top = Math.random() * 150 + "px";
+        var duration = Math.random() * 2 - 0.5;
+        img.style.animation = "moveleave " + duration + "s linear forwards";
+        healElement.appendChild(img);
+    }
+}
+
+function startattackfalse() {
+    var healElement = document.getElementById("leavefalse");
+    healElement.innerHTML = "";
+    for (let i = 0; i < 100; i++) {
+        var img = document.createElement("img");
+        img.src = "greenleave2.png";
+        img.style.left = Math.random() * 150 + "px";
+        img.style.top = Math.random() * 150 + "px";
+        var duration = Math.random() * 2 - 0.5;
+        img.style.animation = "moveleave " + duration + "s linear forwards";
+        healElement.appendChild(img);
+    }
 }
