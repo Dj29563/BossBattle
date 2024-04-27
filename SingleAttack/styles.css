@@ -13,7 +13,8 @@ html {
     transform: translate(-50%, -50%);
     width: 40px;
     height: 40px;
-    background-color: red;
+    background-color: #920000;
+    border: 20px;
     border-radius: 50%;
 }
 
@@ -306,4 +307,54 @@ html {
     font-size: 48px;
     color: #ffa7a7;
     font-weight: bold;
+}
+
+#player-heart-true {
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    background-color: #920000;
+    border: 20px;
+    border-radius: 50%;
+    z-index: 2;
+    transition: all 0.5s ease;
+}
+
+#movetrue {
+    background-color: #00ff00;
+    border-color: #028d00;
+    color: #5cff64;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 8px;
+    position: absolute;
+    top: 90%;
+    left: 25%;
+    display: none;
+}
+
+#movefalse {
+    background-color: #ff0000;
+    border-color: #8d0000;
+    color: #ff5c5c;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 8px;
+    position: absolute;
+    top: 90%;
+    right: 25%;
+    display: none;
 }
