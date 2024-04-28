@@ -2,8 +2,9 @@ var count = 3;
 var check = 0;
 var correct;
 var count2 = 2;
-var correct2;
 var x = 5;
+var answercorrect = 0;
+var answerwrong = 0;
 
 function moveShield(state) {
     const shield = document.getElementById('shield');
@@ -65,6 +66,7 @@ function moveArrowIntoHeart() {
     moveElement(document.getElementById('right-arrow'), targetX, targetY);
     setTimeout(function() {
         toggleGameContainer();
+        checkgame();
     }, 1500);
 }
 
@@ -152,8 +154,10 @@ function moveElement(element, targetX, targetY) {
 function checkshieldarrow() {
     if (count == bool) {
         correct = 1;
+        answercorrect++;
     } else {
         correct = 0;
+        answerwrong++;
         playSoundForDuration();
         setTimeout(() => {
             playerdelhealth(x);
@@ -164,10 +168,10 @@ function checkshieldarrow() {
 
 function checktruefalse() {
     if (count2 == bool2) {
-        correct2 = 1;
+        answercorrect++;
     } else {
-        correct2 = 0;
         playSoundForDuration();
+        answerwrong++;
         setTimeout(() => {
             playerdelhealth(x);
 
@@ -394,23 +398,33 @@ function playerattack() {
     var myButtonheal = document.getElementById('playerheal');
     toggleattackContainer();
     startslash();
+
     myButtonattack.disabled = true;
     myButtonheal.disabled = true;
     setTimeout(() => {
         bossdelhealth(10);
         shakeElement(document.getElementById("theta"))
+        checkhealth();
     }, 200);
+    setTimeout(() => {
+        s1 = 1;
+        checkgame();
+    }, 1000);
 }
 
 function playerheal() {
     var myButtonheal = document.getElementById('playerheal');
     var myButtonattack = document.getElementById('playerattack');
     toggleattackContainer();
+    checkgame();
     myButtonattack.disabled = true;
     myButtonheal.disabled = true;
     setTimeout(() => {
         playerHealAnimation(10);
     }, 200);
+    setTimeout(() => {
+        s1 = 1;
+    }, 1000);
 }
 
 function startheal() {
@@ -764,6 +778,7 @@ function moveLeavesInToHeart() {
     removeQuestion();
     setTimeout(function() {
         toggleGameContainer2();
+        checkgame();
     }, 1000);
     if (bool2 == 0) {
         startattacktrue();
@@ -778,16 +793,16 @@ function randomtwo() {
     extractQuestionAndAnswers2(a, b);
     displayAddedText();
     displayQuestion();
-    startTimer(5);
+    startTimer(5 - time);
 }
 
 function randomthree() {
     var a = Math.floor(Math.random() * 5);
-    var b = Math.floor(Math.random() * 25);
+    var b = Math.floor(Math.random() * 18);
     extractQuestionAndAnswers(a, b);
     displayAddedText();
     displayQuestion();
-    startTimer(8);
+    startTimer(8 - time);
 }
 
 function toggleGameContainer2() {
@@ -1056,7 +1071,7 @@ function refillTimerBar() {
 }
 
 function timeup(totalTime) {
-    if (totalTime == 8) {
+    if (totalTime >= 6) {
         moveArrowIntoHeart();
     } else {
         moveLeavesInToHeart();
@@ -1076,10 +1091,12 @@ window.onload = initializeHealthBars;
 
 function playerwin() {
     document.getElementById("win-screen").style.display = "flex";
+    game = 0;
 }
 
 function playerlose() {
     document.getElementById("lose-screen").style.display = "flex";
+    game = 0;
 }
 
 function restartGame() {
@@ -1169,7 +1186,6 @@ function bossdelhealth(n) {
 
 
 function updatebosshealth() {
-    var bossHealthBar = document.getElementById("boss-health-bar");
     var bossHealthText = document.getElementById("boss-health-text");
     var bossHealthFill = document.getElementById("boss-health-fill");
     var bossHealthOverlay = document.getElementById("boss-health-overlay");
@@ -1185,7 +1201,6 @@ function updatebosshealth() {
 }
 
 function updateplayerhealth() {
-    var playerHealthBar = document.getElementById("player-health-bar");
     var playerHealthText = document.getElementById("player-health-text");
     var playerHealthFill = document.getElementById("player-health-fill");
     var playerHealthOverlay = document.getElementById("player-health-overlay");
@@ -1210,4 +1225,53 @@ function shakeElement(element) {
 function invert() {
     var background = document.getElementById('background');
     background.classList.toggle('inverted');
+}
+
+var game = 1;
+var time = 0;
+var s1 = 0,
+    s2 = 0,
+    s3 = 0;
+startgame();
+
+function startgame() {
+    if (s1 == 0) {
+        toggleattackContainer();
+        s1 = 1;
+    } else {
+        if (s2 == 0) {
+            toggleGameContainer();
+            setTimeout(() => {
+                showarrow();
+                s1 = 0;
+                s2 = 1;
+                s3 = 0;
+            }, 500);
+        } else {
+            toggleGameContainer2();
+            setTimeout(() => {
+                showtruefalse();
+                s1 = 0;
+                s2 = 0;
+                s3 = 1;
+            }, 500);
+        }
+    }
+}
+
+function checkgame() {
+    if (game == 1) {
+        setTimeout(function() {
+            startgame();
+        }, 800);
+    }
+}
+
+function checkhealth() {
+    if (bosshealth <= 50) {
+        invert();
+        time = 2;
+        x = 10;
+        bossHealAnimation(100);
+    }
 }
