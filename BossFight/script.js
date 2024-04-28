@@ -217,7 +217,6 @@ function toggleGameContainer() {
     const moveLeftButton = document.getElementById('moveleft');
     const moveRightButton = document.getElementById('moveright');
     const questionBox = document.getElementById('question-box');
-
     const isVisible = gameContainer.classList.contains('visible');
 
     if (isVisible) {
@@ -236,7 +235,6 @@ function toggleGameContainer() {
                 gameContainer.style.display = 'none';
                 gameContainer.classList.remove('visible');
                 gameContainer.classList.add('invisible');
-
             }
             gameContainer.style.height = height + '%';
         };
@@ -316,6 +314,7 @@ function toggleattackContainer() {
     const isVisible = gameContainer.classList.contains('visible');
     var myButtonheal = document.getElementById('playerheal');
     var myButtonattack = document.getElementById('playerattack');
+    const questionBox = document.getElementById('question-box');
     myButtonattack.disabled = false;
     myButtonheal.disabled = false;
     if (isVisible) {
@@ -332,6 +331,9 @@ function toggleattackContainer() {
                 gameContainer.style.display = 'none';
                 gameContainer.classList.remove('visible');
                 gameContainer.classList.add('invisible');
+                questionBox.style.display = 'none';
+                Question = ' '
+                removeQuestion();
             }
             gameContainer.style.height = height + '%';
         };
@@ -364,6 +366,9 @@ function toggleattackContainer() {
                 clearInterval(timer);
                 gameContainer.classList.remove('invisible');
                 gameContainer.classList.add('visible');
+                questionBox.style.display = 'block';
+                Question = 'พี่ Theta ดูเปลี่ยนไป?'
+                displayQuestion();
             }
             gameContainer.style.height = height + '%';
         };
@@ -393,6 +398,7 @@ function playerattack() {
     myButtonheal.disabled = true;
     setTimeout(() => {
         bossdelhealth(10);
+        shakeElement(document.getElementById("theta"))
     }, 200);
 }
 
@@ -772,7 +778,7 @@ function randomtwo() {
     extractQuestionAndAnswers2(a, b);
     displayAddedText();
     displayQuestion();
-    startTimer(3);
+    startTimer(5);
 }
 
 function randomthree() {
@@ -781,7 +787,7 @@ function randomthree() {
     extractQuestionAndAnswers(a, b);
     displayAddedText();
     displayQuestion();
-    startTimer(5);
+    startTimer(8);
 }
 
 function toggleGameContainer2() {
@@ -1050,7 +1056,7 @@ function refillTimerBar() {
 }
 
 function timeup(totalTime) {
-    if (totalTime == 5) {
+    if (totalTime == 8) {
         moveArrowIntoHeart();
     } else {
         moveLeavesInToHeart();
@@ -1199,4 +1205,9 @@ function shakeElement(element) {
     setTimeout(function() {
         element.classList.remove('shake-screen');
     }, 200);
+}
+
+function invert() {
+    var background = document.getElementById('background');
+    background.classList.toggle('inverted');
 }
