@@ -49,22 +49,16 @@
     </div>
 
     <div id="play-attack">
-        <button id="playerattack" onclick="playerattack()"> attack </button>
-        <button id="playerheal" onclick="playerheal()"> heal </button>
+        <button id="playerattack" onclick="playerattack()">โจมตี</button>
+        <button id="playerheal" onclick="playerheal()">รักษา</button>
     </div>
 
     <div>
-        <button id="moveleft" onclick="movedown()"> <- </button>
-        <button id="moveright" onclick="moveup()"> -> </button>
-        <button id="movetrue" onclick="movetrue()"> true </button>
-        <button id="movefalse" onclick="movefalse()"> false </button>
-        <button onclick="showarrow()">show</button>
-        <button onclick="showtruefalse()">show true</button>
-        <button onclick="toggleGameContainer()">Toggle Game Container</button>
-        <button onclick="toggleGameContainer2()">Toggle Game Container 2</button>
-        <button onclick="toggleattackContainer()">Toggle attack Container</button>
+        <button id="moveleft" onclick="movedown()">โล่ไปด้านซ้าย</button>
+        <button id="moveright" onclick="moveup()">โล่ไปด้านขวา</button>
+        <button id="movetrue" onclick="movetrue()">จริง</button>
+        <button id="movefalse" onclick="movefalse()">เท็จ</button>
     </div>
-
 
     <div class="boss-health">
         <div id="boss-health-bar" class="health-bar boss-health-bar">
@@ -87,14 +81,14 @@
 
     <div id="win-screen" class="overlay">
         <div class="overlay-content">
-            <h2>You Win</h2>
+            <h2>คุณชนะ</h2>
             <button onclick="restartGame()">Restart</button>
         </div>
     </div>
 
     <div id="lose-screen" class="overlay">
         <div class="overlay-content">
-            <h2>You Lose</h2>
+            <h2>คุณแพ้</h2>
             <button onclick="restartGame()">Restart</button>
         </div>
     </div>
