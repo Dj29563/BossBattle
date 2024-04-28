@@ -1,0 +1,573 @@
+body,
+html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+}
+
+#player-heart {
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    background-color: #920000;
+    border: 20px;
+    border-radius: 50%;
+}
+
+#left-arrow {
+    top: 68%;
+    left: 20%;
+    position: absolute;
+    width: 10%;
+    height: 10%;
+    z-index: 1;
+}
+
+#right-arrow {
+    top: 68%;
+    right: 20%;
+    position: absolute;
+    width: 10%;
+    height: 10%;
+    z-index: 1;
+}
+
+#top-arrow {
+    top: 10%;
+    left: 48%;
+    position: absolute;
+    width: 5%;
+    height: 20%;
+    z-index: 1;
+}
+
+#shield {
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 5px;
+    height: 30px;
+    background-color: #472407;
+    border-radius: 10px;
+    z-index: 2;
+    transition: all 0.5s ease;
+}
+
+#shield.morphed {
+    width: 30px;
+    height: 5px;
+    border-radius: 10px;
+}
+
+.arrow {
+    display: none;
+}
+
+#display-area1 {
+    position: absolute;
+    top: 60%;
+    left: 15%;
+}
+
+#display-area2 {
+    position: absolute;
+    top: 8%;
+    left: 45%;
+}
+
+#display-area3 {
+    position: absolute;
+    top: 60%;
+    right: 15%;
+}
+
+#game-container {
+    width: 90%;
+    height: 30%;
+    position: fixed;
+    top: 65%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #feb603;
+    border: 5px solid #472407;
+    overflow: hidden;
+    transition: width 0.5s ease-in-out;
+    opacity: 0;
+}
+
+#moveleft {
+    background-color: #472407;
+    border-color: #cd6b02;
+    color: #feb603;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 8px;
+    position: absolute;
+    top: 90%;
+    left: 25%;
+    display: none;
+}
+
+#moveright {
+    background-color: #472407;
+    border-color: #cd6b02;
+    color: #feb603;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 8px;
+    position: absolute;
+    top: 90%;
+    right: 25%;
+    display: none;
+}
+
+#question-box {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 85%;
+    height: 5%;
+    padding: 20px;
+    background-color: rgba(194, 194, 194, 0.5);
+    border: 5px solid #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 2;
+    display: none;
+}
+
+#question-text {
+    font-size: 12px;
+    text-align: center;
+    color: #000000;
+}
+
+#play-attack {
+    width: 90%;
+    height: 30%;
+    position: fixed;
+    top: 65%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #feb603;
+    border: 5px solid #472407;
+    overflow: hidden;
+    transition: width 0.5s ease-in-out;
+    opacity: 0;
+}
+
+#playerattack {
+    background-color: #ff0000;
+    border-color: #920000;
+    color: #ff9f9f;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 8px;
+    position: absolute;
+    top: 45%;
+    left: 25%;
+}
+
+#playerheal {
+    background-color: #00ff08;
+    border-color: #00c54c;
+    color: #015800;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 8px;
+    position: absolute;
+    top: 45%;
+    right: 25%;
+}
+
+#animation {
+    width: 150px;
+    height: 150px;
+    left: calc(50% - 75px);
+    top: 15%;
+    position: absolute;
+    z-index: 5;
+}
+
+#heal {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.dot {
+    width: 5px;
+    height: 5px;
+    background-color: rgb(0, 255, 0);
+    border-radius: 50%;
+    position: absolute;
+    animation: moveDot 3s linear forwards;
+}
+
+@keyframes moveDot {
+    to {
+        transform: translateY(-250px);
+        opacity: 0;
+    }
+}
+
+#slash {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 4px;
+    height: 80%;
+    background-color: red;
+    border-radius: 50%;
+    transform-origin: top;
+    animation: slashAnimation 0.2s linear;
+    animation-fill-mode: forwards;
+    display: none;
+}
+
+@keyframes slashAnimation {
+    0% {
+        transform: translateX(-50%) scaleY(0);
+    }
+    100% {
+        transform: translateX(-50%) scaleY(1.2);
+    }
+}
+
+#game-container-two {
+    width: 90%;
+    height: 30%;
+    position: fixed;
+    top: 65%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 5px solid #472407;
+    overflow: hidden;
+    transition: width 0.5s ease-in-out;
+    opacity: 0;
+}
+
+#true {
+    width: 50%;
+    height: 100%;
+    position: fixed;
+    left: 0%;
+    background-color: #00ff08;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#true p {
+    font-size: 48px;
+    color: #a3ffa3;
+    font-weight: bold;
+}
+
+#false {
+    width: 50%;
+    height: 100%;
+    position: fixed;
+    right: 0%;
+    background-color: #ff0000;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#false p {
+    font-size: 48px;
+    color: #ffa7a7;
+    font-weight: bold;
+}
+
+#player-heart-true {
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    background-color: #920000;
+    border: 20px;
+    border-radius: 50%;
+    z-index: 2;
+    transition: all 0.5s ease;
+}
+
+#movetrue {
+    background-color: #00ff00;
+    border-color: #028d00;
+    color: #000000;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 8px;
+    position: absolute;
+    top: 90%;
+    left: 25%;
+    display: none;
+}
+
+#movefalse {
+    background-color: #ff0000;
+    border-color: #8d0000;
+    color: #000000;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 8px;
+    position: absolute;
+    top: 90%;
+    right: 25%;
+    display: none;
+}
+
+#leavetrue {
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 5;
+}
+
+#leavefalse {
+    position: absolute;
+    top: 0%;
+    right: 0%;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 5;
+}
+
+.img {
+    position: flex;
+    z-index: 6;
+}
+
+@keyframes moveleave {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(100vh);
+    }
+}
+
+body,
+h1,
+h2,
+button {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.boss-health {
+    position: fixed;
+    top: 0%;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    margin-top: 20px;
+}
+
+.player-health {
+    position: fixed;
+    bottom: 7%;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.controls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.controls button {
+    margin: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.health-bar {
+    position: relative;
+    width: 200px;
+    height: 20px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.health-bar span {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    color: black;
+    font-weight: bold;
+}
+
+.boss-health-bar {
+    border: 2px solid #ff00ff;
+}
+
+.boss-health-bar .health-bar-fill,
+.boss-health-bar .health-bar-overlay {
+    position: absolute;
+    height: 100%;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.boss-health-bar .health-bar-fill {
+    background-color: yellow;
+    transition: width 0.5s ease;
+    ;
+}
+
+.boss-health-bar .health-bar-overlay {
+    background-color: #ff99ff;
+    z-index: 1;
+}
+
+.player-health-bar {
+    border: 2px solid #ff0000;
+}
+
+.player-health-bar .health-bar-fill,
+.player-health-bar .health-bar-overlay {
+    position: absolute;
+    height: 100%;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.player-health-bar .health-bar-fill {
+    background-color: yellow;
+    transition: width 0.5s ease;
+}
+
+.player-health-bar .health-bar-overlay {
+    background-color: #ff9999;
+    z-index: 1;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.overlay-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
+
+.controls button:hover {
+    background-color: #0056b3;
+}
+
+@keyframes shake {
+    0% {
+        transform: translate(0, 0);
+    }
+    10%,
+    30%,
+    50%,
+    70%,
+    90% {
+        transform: translate(-2px, 0);
+    }
+    20%,
+    40%,
+    60%,
+    80%,
+    100% {
+        transform: translate(2px, 0);
+    }
+}
+
+.shake-screen {
+    animation: shake 0.5s ease-in-out;
+}
+
+.timer-bar-container {
+    width: 200px;
+    background-color: #f0f0f0;
+    position: absolute;
+    top: 84%;
+    left: calc(50% - 100px);
+}
+
+.timer-bar {
+    height: 10px;
+    background-color: #00ff08;
+}
