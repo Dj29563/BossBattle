@@ -153,7 +153,7 @@ html {
 }
 
 #question-text {
-    font-size: 16px;
+    font-size: 80%;
     text-align: center;
     color: #000000;
 }
@@ -605,4 +605,40 @@ button {
     height: 100%;
     width: 100%;
     z-index: 4;
+}
+
+#thetachat {
+    position: absolute;
+    z-index: 5;
+    height: 10%;
+    width: 25%;
+    left: 68%;
+    top: 15%;
+}
+
+#chatbox {
+    position: absolute;
+    z-index: 6;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(254, 182, 3, 0.8);
+    border: 5px solid #472407;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: none;
+}
+
+#chat {
+    font-size: 80%;
+}
+
+#blackscreen {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    display: none;
+    background-color: #000000;
 }
