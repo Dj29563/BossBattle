@@ -417,11 +417,15 @@ function playerattack() {
     var myButtonheal = document.getElementById('playerheal');
     toggleattackContainer();
     startslash();
-
+    playSoundeffect();
+    if (dialogue == 0) {
+        playSound();
+    }
     myButtonattack.disabled = true;
     myButtonheal.disabled = true;
     setTimeout(() => {
         bossdelhealth(10);
+
         dialogue = dialogue + 1;
         removechat();
         shakeElement(document.getElementById("theta"))
@@ -433,6 +437,7 @@ function playerattack() {
             s1 = 1;
             checkgame();
             checkphase = 1;
+            fadeOut();
         }, 1000);
     } else {
         setTimeout(() => {
@@ -839,7 +844,7 @@ function randomthree() {
     extractQuestionAndAnswers(a, b);
     displayAddedText();
     displayQuestion();
-    startTimer(8 - time);
+    startTimer(9 - time);
 }
 
 function toggleGameContainer2() {
@@ -1268,7 +1273,6 @@ function invert() {
     background.classList.toggle('inverted');
 }
 
-
 var game = 1;
 var time = 0;
 var s1 = 0,
@@ -1276,10 +1280,12 @@ var s1 = 0,
     s3 = 0;
 var phase = 0;
 var checkphase = 0;
+
 startgame();
 
 function startgame() {
     if (s1 == 0) {
+
         toggleattackContainer();
         displaychat();
         s1 = 1;
@@ -1349,4 +1355,35 @@ function removechat() {
     const chatTextElement = document.getElementById('chat');
     document.getElementById('chatbox').style.display = 'none';
     chatTextElement.textContent = ' ';
+}
+
+function playSoundeffect() {
+    var sound = document.getElementById("soundswing");
+    sound.play();
+    setTimeout(function() {
+        sound.pause();
+        sound.currentTime = 0;
+    }, 1000);
+}
+
+function fadeOut() {
+    var sound = document.getElementById("soundboss");
+    var fadeInterval = 100;
+    var fadeStep = 0.05;
+
+    var fadeOutInterval = setInterval(function() {
+        if (sound.volume > 0) {
+            sound.volume -= fadeStep;
+        } else {
+            clearInterval(fadeOutInterval);
+            sound.pause();
+            sound.volume = 1;
+        }
+    }, fadeInterval);
+}
+
+function playSound() {
+    var sound = document.getElementById("soundboss");
+    sound.volume = 1;
+    sound.play();
 }
