@@ -7,6 +7,16 @@ var answercorrect = 0;
 var answerwrong = 0;
 var word = 'พี่ Theta ดูเปลี่ยนไป?';
 var healpotion = 5;
+var dialogue = 0;
+var chatdata = [
+    "พร้อมหรือยัง",
+    "เก่งมากที่มาถึงที่นี่ได้ สมกับเป็นผู้ที่ข้าเลือกจริงๆ",
+    "พลังในตัวเจ้า น่าสนใจมาก",
+    "แก้ปัญหาชาวบ้านหนะหรอ.. ก็แค่ข้ออ้าง",
+    "มันจะจบแค่ตรงนี้ รอสักหน่อยใช้เวลาไม่นานหรอก",
+    "เตรียมตัวให้ดีๆ ข้าเอาจริงละนะ..",
+
+]
 
 function moveShield(state) {
     const shield = document.getElementById('shield');
@@ -163,7 +173,9 @@ function checkshieldarrow() {
         playSoundForDuration();
         setTimeout(() => {
             playerdelhealth(x);
-
+            if (phase == 1) {
+                x = x + 3;
+            }
         }, 200);
     }
 }
@@ -410,6 +422,8 @@ function playerattack() {
     myButtonheal.disabled = true;
     setTimeout(() => {
         bossdelhealth(10);
+        dialogue = dialogue + 1;
+        removechat();
         shakeElement(document.getElementById("theta"))
         checkhealth();
     }, 200);
@@ -419,14 +433,13 @@ function playerattack() {
             s1 = 1;
             checkgame();
             checkphase = 1;
-        }, 10000);
+        }, 1000);
     } else {
         setTimeout(() => {
             s1 = 1;
             checkgame();
         }, 1000);
     }
-
 }
 
 function playerheal() {
@@ -437,6 +450,7 @@ function playerheal() {
     myButtonattack.disabled = true;
     myButtonheal.disabled = true;
     setTimeout(() => {
+        removechat();
         playerHealAnimation(20);
     }, 200);
     setTimeout(() => {
@@ -447,12 +461,12 @@ function playerheal() {
 function startheal() {
     var healElement = document.getElementById("heal");
     healElement.innerHTML = "";
-    for (let i = 0; i < 50; i++) {
+    for (let i = 0; i < 100; i++) {
         var dot = document.createElement("div");
         dot.classList.add("dot");
         dot.style.left = Math.random() * 150 + "px";
         dot.style.top = Math.random() * 150 + "px";
-        var duration = Math.random() * 2 + 0.5;
+        var duration = Math.random() * 4 + 3.5;
         dot.style.animation = "moveDot " + duration + "s linear forwards";
         healElement.appendChild(dot);
     }
@@ -605,7 +619,13 @@ var data2 = [
         ["ความสูงของต้นไม้ จัดเป็นปริมาณเวกเตอร์", "1"],
         ["นักผจญภัยออกแรงขนาด 10 นิวตัน ลากรถเข็นแครอทขนาด 150 กิโลกรัม เพื่อนำไปขายที่ร้านค้า จากข้อความข้างต้นแรงและขนาดของรถเข็นจัดเป็นปริมาณเวกเตอร์", "0"],
         ["บริเวณทิศเหนือของหมู่บ้านมีลมพัดผ่านด้วยความเร็วขนาด 20 กิโลเมตรต่อชั่วโมง จากข้อความข้างต้นมีข้อมูลที่แสดงถึงปริมาณเวกเตอร์", "0"],
-        ["เวกเตอร์ที่ี่ตรงข้ามกันจะมีขนาดและทิศต่างแตกต่างกันเสมอ", "0"],
+        ["เวกเตอร์ที่ี่สามารถเปลี่ยนไปในตำแหน่งใด ๆ ก็ได้ โดยที่ยังมีขนาดและทิศทางเหมือนเดิม เรียกว่า การเคลื่อนที่ของเวกเตอร์", "1"],
+        ["เวกเตอร์ตั้งแต่ 2 เวกเตอร์ขึ้นไป สามารถนำมารวมกันเพื่อหาเวกเตอร์ลัพธ์ได้โดยไม่ต้องคำนึงถึงหน่วย", "0"],
+        ["ระยะห่างระหว่างต้นมะเขือเทศ จัดเป็นปริมาณเวกเตอร์", "0"],
+        ["นักผจญภัย ลากรถเข็นแครอทด้วยขนาดความเร็วเฉลี่ย 20 กิโลเมตรต่อชั่วโมง จากข้อความข้างต้นมีข้อมูลที่แสดงถึงปริมาณเวกเตอร์", "0"],
+        ["การตกของลูกมะเขือเทศจากต้นถึงพื้นได้นั้น คือผลจากแรงโน้มถ่วงของโลก จากข้อความข้างต้นมีข้อมูลที่แสดงถึงปริมาณเวกเตอร์", "1"],
+        ["ชาวบ้านบอกกับนักผจญภัยว่า ตั้งแต่อดีตถึงปัจจุบันหมู่บ้าน Newmathcian มีอุณภูมิเฉลี่ยเพิ่มขึ้นถึง 8 องศาเซลเซียส จากคำบอกเล่าของชาวบ้านไม่มีข้อความที่แสดงถึงปริมาณเวกเตอร์", "1"],
+        ["เวกเตอร์ที่ตรงข้ามกันจะมีขนาดและทิศต่างแตกต่างกันเสมอ", "0"],
         ["เวกเตอร์ที่ตรงข้ามกันจะมีทิศทางแตกต่างกันเสมอ", "1"],
         ["เวกเตอร์ที่ตรงข้ามกันจะมีขนาดเท่ากัน แต่ทิศทางตรงข้ามกัน", "1"]
     ]
@@ -1248,6 +1268,7 @@ function invert() {
     background.classList.toggle('inverted');
 }
 
+
 var game = 1;
 var time = 0;
 var s1 = 0,
@@ -1260,6 +1281,7 @@ startgame();
 function startgame() {
     if (s1 == 0) {
         toggleattackContainer();
+        displaychat();
         s1 = 1;
         if (healpotion < 5) {
             healpotion = healpotion + 1;
@@ -1295,11 +1317,36 @@ function checkgame() {
 
 function checkhealth() {
     if (bosshealth <= 50 && phase == 0) {
-        invert();
+        setTimeout(function() {
+            document.getElementById('blackscreen').style.display = 'block';
+        }, 400)
+        setTimeout(function() {
+            invert();
+        }, 500)
+        setTimeout(function() {
+            document.getElementById('blackscreen').style.display = 'none';
+            bossHealAnimation(100);
+        }, 1200)
         time = 2;
-        x = x * 2;
-        bossHealAnimation(100);
+        x = x + 5;
+
         phase = 1;
-        word = 'มาจบเรื่องนี้กันเถอะ'
+        word = 'มาจบเรื่องนี้กันเถอะ..'
     }
+}
+
+function displaychat() {
+    const chatTextElement = document.getElementById('chat');
+    chatTextElement.textContent = chatdata[dialogue];
+    if (dialogue >= 6) {
+        document.getElementById('chatbox').style.display = 'none';
+    } else {
+        document.getElementById('chatbox').style.display = 'block';
+    }
+}
+
+function removechat() {
+    const chatTextElement = document.getElementById('chat');
+    document.getElementById('chatbox').style.display = 'none';
+    chatTextElement.textContent = ' ';
 }
