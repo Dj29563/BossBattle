@@ -114,7 +114,7 @@ html {
     border-radius: 8px;
     position: absolute;
     top: 90%;
-    left: 25%;
+    left: 15%;
     display: none;
 }
 
@@ -132,7 +132,7 @@ html {
     border-radius: 8px;
     position: absolute;
     top: 90%;
-    right: 25%;
+    right: 15%;
     display: none;
 }
 
@@ -186,7 +186,7 @@ html {
     border-radius: 8px;
     position: absolute;
     top: 45%;
-    left: 25%;
+    left: 15%;
 }
 
 #playerheal {
@@ -203,7 +203,7 @@ html {
     border-radius: 8px;
     position: absolute;
     top: 45%;
-    right: 25%;
+    right: 15%;
 }
 
 #animation {
@@ -337,7 +337,7 @@ html {
     border-radius: 8px;
     position: absolute;
     top: 90%;
-    left: 25%;
+    left: 15%;
     display: none;
 }
 
@@ -355,7 +355,7 @@ html {
     border-radius: 8px;
     position: absolute;
     top: 90%;
-    right: 25%;
+    right: 15%;
     display: none;
 }
 
