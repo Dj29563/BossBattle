@@ -71,7 +71,7 @@ html {
 #display-area1 {
     position: absolute;
     top: 60%;
-    left: 15%;
+    left: 10%;
 }
 
 #display-area2 {
@@ -83,7 +83,7 @@ html {
 #display-area3 {
     position: absolute;
     top: 60%;
-    right: 15%;
+    right: 10%;
 }
 
 #game-container {
@@ -138,13 +138,13 @@ html {
 
 #question-box {
     position: absolute;
-    top: 40%;
+    top: 42%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 85%;
-    height: 5%;
-    padding: 20px;
-    background-color: rgba(194, 194, 194, 0.5);
+    height: 10%;
+    padding: 5px;
+    background-color: rgba(194, 194, 194, 0.8);
     border: 5px solid #ffffff;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -154,6 +154,7 @@ html {
 
 #question-text {
     font-size: 80%;
+    top: 0%;
     text-align: center;
     color: #000000;
 }
@@ -621,8 +622,8 @@ button {
     z-index: 6;
     height: 100%;
     width: 100%;
-    background-color: rgba(254, 182, 3, 0.8);
-    border: 5px solid #472407;
+    background-color: rgba(254, 182, 3, 1);
+    border: 5px solid rgba(205, 107, 2, 0.6);
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     display: none;
@@ -630,6 +631,7 @@ button {
 
 #chat {
     font-size: 80%;
+    text-align: center;
 }
 
 #blackscreen {
