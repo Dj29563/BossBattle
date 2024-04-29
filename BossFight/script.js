@@ -5,6 +5,8 @@ var count2 = 2;
 var x = 5;
 var answercorrect = 0;
 var answerwrong = 0;
+var word = 'พี่ Theta ดูเปลี่ยนไป?';
+var healpotion = 5;
 
 function moveShield(state) {
     const shield = document.getElementById('shield');
@@ -371,8 +373,13 @@ function toggleattackContainer() {
                 gameContainer.classList.remove('invisible');
                 gameContainer.classList.add('visible');
                 questionBox.style.display = 'block';
-                Question = 'พี่ Theta ดูเปลี่ยนไป?'
+                Question = word;
                 displayQuestion();
+                if (healpotion == 5) {
+                    myButtonheal.disabled = false;
+                } else {
+                    myButtonheal.disabled = true;
+                }
             }
             gameContainer.style.height = height + '%';
         };
@@ -406,10 +413,20 @@ function playerattack() {
         shakeElement(document.getElementById("theta"))
         checkhealth();
     }, 200);
-    setTimeout(() => {
-        s1 = 1;
-        checkgame();
-    }, 1000);
+
+    if (phase == 1 && checkphase == 0) {
+        setTimeout(() => {
+            s1 = 1;
+            checkgame();
+            checkphase = 1;
+        }, 10000);
+    } else {
+        setTimeout(() => {
+            s1 = 1;
+            checkgame();
+        }, 1000);
+    }
+
 }
 
 function playerheal() {
@@ -420,7 +437,7 @@ function playerheal() {
     myButtonattack.disabled = true;
     myButtonheal.disabled = true;
     setTimeout(() => {
-        playerHealAnimation(10);
+        playerHealAnimation(20);
     }, 200);
     setTimeout(() => {
         s1 = 1;
@@ -1097,6 +1114,9 @@ function playerwin() {
 function playerlose() {
     document.getElementById("lose-screen").style.display = "flex";
     game = 0;
+    setTimeout(function() {
+        window.close();
+    }, 1000);
 }
 
 function restartGame() {
@@ -1111,6 +1131,7 @@ function playerHealAnimation(n) {
     var increment = 1;
     var healedAmount = 0;
     var intervalTime = 50;
+    healpotion = 0;
     var interval = setInterval(function() {
         if (healedAmount >= n) {
             clearInterval(interval);
@@ -1232,12 +1253,17 @@ var time = 0;
 var s1 = 0,
     s2 = 0,
     s3 = 0;
+var phase = 0;
+var checkphase = 0;
 startgame();
 
 function startgame() {
     if (s1 == 0) {
         toggleattackContainer();
         s1 = 1;
+        if (healpotion < 5) {
+            healpotion = healpotion + 1;
+        }
     } else {
         if (s2 == 0) {
             toggleGameContainer();
@@ -1268,10 +1294,12 @@ function checkgame() {
 }
 
 function checkhealth() {
-    if (bosshealth <= 50) {
+    if (bosshealth <= 50 && phase == 0) {
         invert();
         time = 2;
-        x = 10;
+        x = x * 2;
         bossHealAnimation(100);
+        phase = 1;
+        word = 'มาจบเรื่องนี้กันเถอะ'
     }
 }
