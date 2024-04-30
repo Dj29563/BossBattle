@@ -28,7 +28,7 @@ html {
 }
 
 #right-arrow {
-    top: 68%;
+    top: 72%;
     right: 20%;
     position: absolute;
     width: 35px;
@@ -82,7 +82,7 @@ html {
 
 #display-area3 {
     position: absolute;
-    top: 72%;
+    top: 60%;
     right: 10%;
 }
 
@@ -193,6 +193,23 @@ html {
 #playerheal {
     background-color: #00ff08;
     border-color: #00c54c;
+    color: #015800;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 8px;
+    position: absolute;
+    top: 45%;
+    right: 15%;
+}
+
+#playerheal[disabled] {
+    background-color: #004502;
+    border-color: #004f1e;
     color: #015800;
     padding: 10px 20px;
     text-align: center;
