@@ -1,3 +1,4 @@
+var score;
 var count = 3;
 var check = 0;
 var correct;
@@ -6,7 +7,7 @@ var x = 5;
 var answercorrect = 0;
 var answerwrong = 0;
 var word = 'พี่ Theta ดูเปลี่ยนไป?';
-var healpotion = 5;
+var healpotion = 3;
 var dialogue = 0;
 var chatdata = [
     "พร้อมหรือยัง",
@@ -387,7 +388,7 @@ function toggleattackContainer() {
                 questionBox.style.display = 'block';
                 Question = word;
                 displayQuestion();
-                if (healpotion == 5) {
+                if (healpotion == 3) {
                     myButtonheal.disabled = false;
                 } else {
                     myButtonheal.disabled = true;
@@ -418,9 +419,6 @@ function playerattack() {
     toggleattackContainer();
     startslash();
     playSoundeffect();
-    if (dialogue == 0) {
-        playSound();
-    }
     myButtonattack.disabled = true;
     myButtonheal.disabled = true;
     setTimeout(() => {
@@ -437,7 +435,6 @@ function playerattack() {
             s1 = 1;
             checkgame();
             checkphase = 1;
-            fadeOut();
         }, 1000);
     } else {
         setTimeout(() => {
@@ -1134,6 +1131,7 @@ window.onload = initializeHealthBars;
 function playerwin() {
     document.getElementById("win-screen").style.display = "flex";
     game = 0;
+    score = (answercorrect / (answercorrect + answerwrong)) * 1000;
 }
 
 function playerlose() {
@@ -1284,12 +1282,15 @@ var checkphase = 0;
 startgame();
 
 function startgame() {
+    if (dialogue == 0) {
+        playLastEncounter();
+    }
     if (s1 == 0) {
 
         toggleattackContainer();
         displaychat();
         s1 = 1;
-        if (healpotion < 5) {
+        if (healpotion < 3) {
             healpotion = healpotion + 1;
         }
     } else {
@@ -1337,6 +1338,9 @@ function checkhealth() {
         x = x + 5;
 
         phase = 1;
+        playFinaleShowdown();
+        stopLastEncounter();
+
         word = 'มาจบเรื่องนี้กันเถอะ..'
     }
 }
@@ -1366,24 +1370,28 @@ function playSoundeffect() {
     }, 1000);
 }
 
-function fadeOut() {
-    var sound = document.getElementById("soundboss");
-    var fadeInterval = 100;
-    var fadeStep = 0.05;
 
-    var fadeOutInterval = setInterval(function() {
-        if (sound.volume > 0) {
-            sound.volume -= fadeStep;
-        } else {
-            clearInterval(fadeOutInterval);
-            sound.pause();
-            sound.volume = 1;
-        }
-    }, fadeInterval);
+
+
+
+function playLastEncounter() {
+    var LE = document.getElementById("LastEncounter");
+    LE.play();
 }
 
-function playSound() {
-    var sound = document.getElementById("soundboss");
-    sound.volume = 1;
-    sound.play();
+function stopLastEncounter() {
+    var LE = document.getElementById("LastEncounter");
+    LE.pause();
+    LE.currentTime = 0;
+}
+
+function playFinaleShowdown() {
+    var FS = document.getElementById("FinaleShowdown");
+    FS.play();
+}
+
+function stopFinaleShowdown() {
+    var FS = document.getElementById("FinaleShowdown");
+    FS.pause();
+    FS.currentTime = 0;
 }
