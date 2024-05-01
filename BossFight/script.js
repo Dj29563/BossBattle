@@ -189,7 +189,9 @@ function checktruefalse() {
         answerwrong++;
         setTimeout(() => {
             playerdelhealth(x);
-
+            if (phase == 1) {
+                x = x + 3;
+            }
         }, 200);
     }
 }
@@ -1342,7 +1344,7 @@ function checkhealth() {
             playFinaleShowdown();
         }, 1200)
         time = 2;
-        x = x + 5;
+        x = x + 10;
 
         phase = 1;
 
