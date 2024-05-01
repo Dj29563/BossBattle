@@ -661,3 +661,11 @@ button {
     display: none;
     background-color: #000000;
 }
+
+#boss-health-text {
+    color: black;
+}
+
+#player-health-text {
+    color: black;
+}
