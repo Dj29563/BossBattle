@@ -1139,16 +1139,49 @@ function initializeHealthBars() {
 window.onload = initializeHealthBars;
 
 function playerwin() {
-    document.getElementById("win-screen").style.display = "flex";
+    document.getElementById("win-screen").style.display = "block";
+    document.getElementById("comic").style.display = "block";
+    document.getElementById("win1").style.display = "block";
+    document.getElementById("win2").style.display = "block";
+    document.getElementById("win3").style.display = "block";
+    document.getElementById("win4").style.display = "block";
+    document.getElementById("win5").style.display = "block";
     game = 0;
-    score = (answercorrect / (answercorrect + answerwrong)) * 1000;
+    setTimeout(function() {
+        document.getElementById("win-screen").style.opacity = 1;
+        document.getElementById("comic").style.opacity = 1;
+        score = (answercorrect / (answercorrect + answerwrong)) * 500;
+        setTimeout(function() {
+            document.getElementById("win1").style.opacity = 1;
+        }, 2000);
+        setTimeout(function() {
+            document.getElementById("win2").style.opacity = 1;
+        }, 4000);
+        setTimeout(function() {
+            document.getElementById("win3").style.opacity = 1;
+        }, 6000);
+        setTimeout(function() {
+            document.getElementById("win4").style.opacity = 1;
+        }, 8000);
+        setTimeout(function() {
+            document.getElementById("win5").style.opacity = 1;
+        }, 10000);
+
+        setTimeout(function() {
+            document.getElementById("comic").style.opacity = 0;
+        }, 20000);
+    }, 2000);
 }
 
 function playerlose() {
-    document.getElementById("lose-screen").style.display = "flex";
+    document.getElementById("lose-screen").style.display = "block";
+    document.getElementById("lose").style.display = 'block';
     game = 0;
     setTimeout(function() {
-        window.close();
+        document.getElementById("lose-screen").style.opacity = 1;
+        setTimeout(function() {
+            document.getElementById("lose").style.opacity = 1;
+        }, 2000);
     }, 1000);
 }
 
