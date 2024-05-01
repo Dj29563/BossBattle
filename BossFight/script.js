@@ -9,14 +9,14 @@ var answerwrong = 0;
 var word = 'พี่ Theta ดูเปลี่ยนไป?';
 var healpotion = 3;
 var dialogue = 0;
+var songstart = 0;
 var chatdata = [
     "พร้อมหรือยัง",
     "เก่งมากที่มาถึงที่นี่ได้ สมกับเป็นผู้ที่ข้าเลือกจริงๆ",
     "พลังในตัวเจ้า น่าสนใจมาก",
     "แก้ปัญหาชาวบ้านหนะหรอ.. ก็แค่ข้ออ้าง",
     "มันจะจบแค่ตรงนี้ รอสักหน่อยใช้เวลาไม่นานหรอก",
-    "เตรียมตัวให้ดีๆ ข้าเอาจริงละนะ..",
-
+    "เตรียมตัวให้ดีๆ ข้าเอาจริงละนะ.."
 ]
 
 function moveShield(state) {
@@ -423,6 +423,10 @@ function playerattack() {
     myButtonheal.disabled = true;
     setTimeout(() => {
         bossdelhealth(10);
+        if (dialogue == 0 && songstart == 0) {
+            playLastEncounter();
+            songstart = 1;
+        }
 
         dialogue = dialogue + 1;
         removechat();
@@ -454,6 +458,10 @@ function playerheal() {
     setTimeout(() => {
         removechat();
         playerHealAnimation(20);
+        if (dialogue == 0 && songstart == 0) {
+            playLastEncounter();
+            songstart = 1;
+        }
     }, 200);
     setTimeout(() => {
         s1 = 1;
@@ -1282,11 +1290,7 @@ var checkphase = 0;
 startgame();
 
 function startgame() {
-    if (dialogue == 0) {
-        playLastEncounter();
-    }
     if (s1 == 0) {
-
         toggleattackContainer();
         displaychat();
         s1 = 1;
@@ -1329,16 +1333,20 @@ function checkhealth() {
         }, 400)
         setTimeout(function() {
             invert();
+            document.getElementById('player-health-text').style.color = 'white';
+            document.getElementById('boss-health-text').style.color = 'white';
         }, 500)
         setTimeout(function() {
             document.getElementById('blackscreen').style.display = 'none';
             bossHealAnimation(100);
+            playFinaleShowdown();
         }, 1200)
         time = 2;
         x = x + 5;
 
         phase = 1;
-        playFinaleShowdown();
+
+
         stopLastEncounter();
 
         word = 'มาจบเรื่องนี้กันเถอะ..'
@@ -1369,10 +1377,6 @@ function playSoundeffect() {
         sound.currentTime = 0;
     }, 1000);
 }
-
-
-
-
 
 function playLastEncounter() {
     var LE = document.getElementById("LastEncounter");
